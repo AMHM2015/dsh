@@ -1,38 +1,242 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.auth-container {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  padding: 60px;
+  background: radial-gradient(circle, #1e1e2f, #2a2a40);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  max-height: 90vh;
+  max-width: 600px;
+  margin: 20px auto;
+  overflow-y: auto;
+}
+
+.auth-container input[type="text"],
+.auth-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #4a4a6a;
+  border-radius: 4px;
+  background-color: #2a2a40;
+  color: #ffffff;
+}
+
+.auth-container input[type="text"]:focus,
+.auth-container input[type="password"]:focus {
+  outline: none;
+  border-color: #00d1b2;
+  box-shadow: 0 0 5px rgba(0, 209, 178, 0.5);
+}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1e1e2f; /* Dark background */
+  color: #ffffff; /* White text */
+  line-height: 1.6;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-template-rows: auto auto 1fr; /* Three rows */
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.card {
+  background-color: #2a2a40; /* Dark card background */
+  border: 1px solid #3d3d5c; /* Subtle border */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #00d1b2; /* Teal accent */
+  margin-bottom: 15px;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #ffffff; /* White text */
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 0 0 10px;
+  color: #cccccc; /* Light gray text */
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  background-color: #3d3d5c; /* Darker background for list items */
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #4a4a6a;
+  color: #ffffff; /* White text */
+}
+
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #00d1b2; /* Teal accent */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #00b39e; /* Darker teal on hover */
+}
+
+.emergency-stop {
+  background-color: #ff3860; /* Red accent */
+}
+
+.emergency-stop:hover {
+  background-color: #ff2b56; /* Darker red on hover */
+}
+
+input[type="range"] {
+  width: 100%;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+table th, table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #4a4a6a;
+}
+
+table th {
+  background-color: #3d3d5c; /* Darker background for table headers */
+  font-weight: 600;
+  color: #ffffff; /* White text */
+}
+
+table td {
+  color: #cccccc; /* Light gray text */
+}
+
+/* Live Camera Feed */
+.live-camera-feed {
+  grid-column: 1 / 3; /* Span across both columns */
+  grid-row: 3 / 4; /* Place at the bottom */
+}
+
+.live-camera-feed img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+  }
+
+  .card {
+    grid-column: 1 / 2;
+  }
+
+  .sensor-data {
+    grid-row: 1 / 2;
+  }
+
+  .road-status {
+    grid-row: 2 / 3;
+  }
+
+  .vehicle-controls {
+    grid-row: 3 / 4;
+  }
+
+  .navigation-status {
+    grid-row: 4 / 5;
+  }
+
+  .live-camera-feed {
+    grid-row: 5 / 6;
+  }
+}
+
+/* Circular Arrow Buttons */
+.arrow-buttons {
+  display: grid;
+  grid-template-areas:
+    ". up ."
+    "left . right"
+    ". down .";
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.arrow-buttons button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #00d1b2; /* Teal accent */
   color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.arrow-buttons button:hover {
+  background-color: #00b39e; /* Darker teal on hover */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.arrow-buttons button.up {
+  grid-area: up;
+}
+
+.arrow-buttons button.left {
+  grid-area: left;
+}
+
+.arrow-buttons button.right {
+  grid-area: right;
+}
+
+.arrow-buttons button.down {
+  grid-area: down;
 }
